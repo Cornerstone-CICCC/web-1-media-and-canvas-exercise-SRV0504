@@ -1,23 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Media Exercise</title>
 </head>
-<body>
+<body style="background: rgb(255, 255, 255) url('assets/images/background.jpg') no-repeat bottom center;">
   <div class="container">
-    <!-- AUDIO HTML GOES HERE -->
+    <audio src="assets/audio/piano.wav" controls muted loop></audio>
 
-    <!-- VIDEO HTML GOES HERE -->
+    <video src="assets/video/ocean.mp4" controls muted poster="assets/images/poster.jpg" width="600"></video>
 
-    <!-- IMAGE MAP HTML GOES HERE-->
+    <img src="assets/images/fruit_table.jpg" usemap="#fruitMap" width="600" alt="Fruit Table">
+    <map name="fruitMap">
+      <area shape="rect" coords="20,60,120,230" href="https://en.wikipedia.org/wiki/Lavandula" alt="Lavender" target="_blank">
+      <area shape="circle" coords="360,180,55" href="https://en.wikipedia.org/wiki/Coffee" alt="Coffee" target="_blank">
+      <area shape="rect" coords="450,330,590,450" href="https://en.wikipedia.org/wiki/Orange_(fruit)" alt="Orange" target="_blank">
+    </map>
 
-    <!-- CANVAS HTML GOES HERE -->
+    <canvas id="myCanvas" width="500" height="500" style="background-color: lightyellow;"></canvas>
   </div>
 
   <script>
-    /* CANVAS JAVASCRIPT GOES HERE */
+    const canvas = document.getElementById("myCanvas");
+    const ctx = canvas.getContext("2d");
+
+    const lines = [
+      { color: "red", from: [50, 50], to: [450, 50] },
+      { color: "blue", from: [450, 50], to: [450, 450] },
+      { color: "green", from: [450, 450], to: [50, 450] },
+      { color: "purple", from: [50, 450], to: [50, 50] }
+    ];
+
+    lines.forEach(line => {
+      ctx.strokeStyle = line.color;
+      ctx.beginPath();
+      ctx.moveTo(...line.from);
+      ctx.lineTo(...line.to);
+      ctx.stroke();
+    });
   </script>
 </body>
 </html>
